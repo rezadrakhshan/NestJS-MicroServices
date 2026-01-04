@@ -1,13 +1,20 @@
 import { Controller, HttpStatus } from '@nestjs/common';
 import { SelfActionService } from './action.service';
 import { MessagePattern } from '@nestjs/microservices';
+import {
+  ServiceClientActionInputDto,
+  ServiceClientOutputDto,
+  ServiceResponseData,
+} from './dto';
 
 @Controller()
 export class ServiceController {
   constructor(private readonly actions: SelfActionService) {}
 
   @MessagePattern('callAction')
-  async callTestMessage(data) {
+  async callTestMessage(
+    data: ServiceClientActionInputDto,
+  ): Promise<ServiceClientOutputDto<ServiceClientActionInputDto>> {
     try {
       const res = await this.actions.findAndCall(data);
       return {
