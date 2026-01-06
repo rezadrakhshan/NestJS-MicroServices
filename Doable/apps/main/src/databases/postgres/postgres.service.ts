@@ -18,7 +18,6 @@ export const PostgresProviders = [
         password: dbConfig.password,
         database: dbConfig.database,
         entities: [],
-        logging:true,
         synchronize: true,
       });
 

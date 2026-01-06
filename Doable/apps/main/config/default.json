@@ -11,5 +11,11 @@
         "password": "doable_pass",
         "database": "doabledb",
         "ssl": false
+    },
+    "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "cacheDB": 0,
+        "sessionDB": 1
     }
 }
