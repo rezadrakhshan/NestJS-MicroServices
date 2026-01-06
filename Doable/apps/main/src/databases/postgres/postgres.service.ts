@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import * as config from 'config';
 import { Logger } from '@nestjs/common';
+import { User } from './entities/user/user.entity';
+import { Session } from './entities/user/session.entity';
 
 const dbConfig = config.get('postgres');
 
@@ -17,7 +19,7 @@ export const PostgresProviders = [
         username: dbConfig.user,
         password: dbConfig.password,
         database: dbConfig.database,
-        entities: [],
+        entities: [User, Session],
         synchronize: true,
       });
 
