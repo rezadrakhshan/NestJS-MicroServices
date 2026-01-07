@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { RequestOtpDto } from 'src/dtos/user-otp.dto';
 import { handlerSrcCliResponse } from 'src/response/http-exception.filter';
 import { MainServiceClient } from 'src/services/main.service';
 
@@ -6,10 +7,10 @@ import { MainServiceClient } from 'src/services/main.service';
 export class UserAuthService {
   constructor(private readonly mainSrcCli: MainServiceClient) {}
 
-  async test(body) {
+  async requestOtp(body: RequestOtpDto) {
     const data = await this.mainSrcCli.callAction({
       provider: 'USERS',
-      action: 'test',
+      action: 'requestOtp',
       query: body,
     });
     return handlerSrcCliResponse(data);

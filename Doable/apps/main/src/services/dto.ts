@@ -27,7 +27,7 @@ export class ServiceClientOutputDto<ContextDto> {
 
 export class ServiceResponseData {
   message?: string;
-  data?: string;
+  data?: any;
 }
 
 export class SrvError extends Error {

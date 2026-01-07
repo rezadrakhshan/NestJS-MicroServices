@@ -1,8 +1,16 @@
-import { Controller, Get, UseFilters, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseFilters,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserAuthService } from './auth.service';
 import { HttpExceptionFilter } from 'src/response/http-exception.filter';
 import { ResponseInterceptor } from 'src/response/response-interceptors';
+import { RequestOtpDto } from 'src/dtos/user-otp.dto';
 
 @ApiTags('User:Auth')
 @Controller('Auth')
@@ -11,9 +19,9 @@ import { ResponseInterceptor } from 'src/response/response-interceptors';
 export class UserAuthController {
   constructor(private readonly service: UserAuthService) {}
 
-  @Get('test')
-  @ApiOperation({ summary: 'This is a test api' })
-  async test() {
-    return await this.service.test('Hello World');
+  @Post('request-otp')
+  @ApiOperation({ summary: 'otp sent to user phone number' })
+  async requestOtp(@Body() body: RequestOtpDto) {
+    return this.service.requestOtp(body);
   }
 }
